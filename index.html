@@ -3,13 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Page</title>
+    <title>PDF Viewer</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        #navigation {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
-<h1>Welcome to My GitHub Page!</h1>
-<p>This is a static website hosted on GitHub Pages.</p>
+<h2>View PDF</h2>
+<div id="navigation">
+    <button onclick="prevFile()">Previous</button>
+    <button onclick="nextFile()">Next</button>
+</div>
+<iframe id="pdfViewer" src="docs/Прейскурант цін на сантехнічні послуги.pdf" width="100%" style="height: 80vh;"></iframe>
+
+<script>
+    const files = [
+        'docs/Прейскурант цін на сантехнічні послуги.pdf',
+        'docs/Datasheet_T8DEE48S.pdf',
+        'docs/Прейскурант цін на електричні_послуги.pdf'
+        // Add more file paths here
+    ];
+    let currentIndex = 0;
+
+    function updateViewer() {
+        document.getElementById('pdfViewer').src = files[currentIndex];
+    }
+
+    function prevFile() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateViewer();
+        }
+    }
+
+    function nextFile() {
+        if (currentIndex < files.length - 1) {
+            currentIndex++;
+            updateViewer();
+        }
+    }
+</script>
 </body>
 </html>
